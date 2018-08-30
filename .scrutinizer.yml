@@ -1,4 +1,6 @@
 build:
+  environment:
+    python: 3.5.0
   dependencies:
     override:
       - pip install -r req-scrutinizer.txt
