@@ -6,6 +6,7 @@ build:
       - pip install -r req-scrutinizer.txt
   tests:
     override:
+      - ls -la
       - flake8 --filename=* bin
       - flake8 blocks doctests tests
       - pep257 bin --numpy --ignore=D100,D101,D102,D103 --match='.*'
