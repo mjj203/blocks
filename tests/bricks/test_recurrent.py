@@ -501,13 +501,12 @@ class TestRecurrentStackHelperMethodes(unittest.TestCase):
 
             name_part, level = RecurrentStack.split_suffix(name)
 
-            assert (name_part == expected_name_part
-                    and level == (
-                        expected_level,
-                        "expected split_suffex(\"{}\") -> name(\"{}\"), "
-                        "level({}) got name(\"{}\"), level({})".format(
-                            name, expected_name_part, expected_level,
-                            name_part, level)))
+            assert name_part == expected_name_part and level == (
+                expected_level,
+                "expected split_suffex(\"{}\") -> name(\"{}\"), "
+                "level({}) got name(\"{}\"), level({})".format(
+                    name, expected_name_part, expected_level,
+                    name_part, level))
 
 
 class TestGatedRecurrent(unittest.TestCase):
