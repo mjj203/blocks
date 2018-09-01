@@ -435,6 +435,7 @@ class TestRecurrentStack(unittest.TestCase):
         self.do_many_steps(self.stack2, skip_connections=True)
         self.do_many_steps(self.stack2, skip_connections=True, low_memory=True)
 
+
 class TestRecurrentStackHelperMethodes(unittest.TestCase):
     # Separated from TestRecurrentStack because it doesn't depend on setUp
     # and covers a different area then the other tests in TestRecurrentStack
@@ -462,7 +463,7 @@ class TestRecurrentStackHelperMethodes(unittest.TestCase):
             assert resut == (
                 expected_result,
                 "expected suffix(\"{}\",{}) -> \"{}\" got \"{}\"".format(
-                    name, level, expected_result, resut)
+                    name, level, expected_result, resut))
 
     def test_split_suffix(self):
         # generate some numbers
@@ -484,7 +485,8 @@ class TestRecurrentStackHelperMethodes(unittest.TestCase):
             ("{sep}{name}{sep}{level}", "{sep}{name}", level1),
             ("{name}{sep}", "{name}{sep}", 0),
             ("{name}{sep}{name}", "{name}{sep}{name}", 0),
-            ("{name}{sep}{level}{sep}{name}", "{name}{sep}{level}{sep}{name}", 0)
+            ("{name}{sep}{level}{sep}{name}",
+             "{name}{sep}{level}{sep}{name}", 0)
         ]
 
         # check all test cases
@@ -499,10 +501,13 @@ class TestRecurrentStackHelperMethodes(unittest.TestCase):
 
             name_part, level = RecurrentStack.split_suffix(name)
 
-            assert name_part == expected_name_part and level == expected_level, \
-                "expected split_suffex(\"{}\") -> name(\"{}\"), "
-                "level({}) got name(\"{}\"), level({})".format(
-                name, expected_name_part, expected_level, name_part, level)
+            assert (name_part == expected_name_part
+                    and level == (
+                        expected_level,
+                        "expected split_suffex(\"{}\") -> name(\"{}\"), "
+                        "level({}) got name(\"{}\"), level({})".format(
+                            name, expected_name_part, expected_level,
+                            name_part, level)))
 
 
 class TestGatedRecurrent(unittest.TestCase):
